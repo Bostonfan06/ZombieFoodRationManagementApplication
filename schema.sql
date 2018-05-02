@@ -13,7 +13,7 @@ CREATE TABLE survivor_tb (
 CREATE TABLE Item_db (
 		ItemID int PRIMARY KEY,
 		ItemName VARCHAR(25) NOT NULL,
-		Category	VARCHAR(25) NOT NULL,
+		Category VARCHAR(25) NOT NULL,
 		Units VARCHAR (25) NOT NULL,
 		ExpirationDate int
 );
