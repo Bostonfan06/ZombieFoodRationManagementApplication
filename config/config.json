@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "blogger",
+    "database": "Zombie_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "port": 8889
