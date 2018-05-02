@@ -20,6 +20,6 @@ CREATE TABLE Items (
 	Category VARCHAR(25) NOT NULL,
 	Units VARCHAR (25) NOT NULL,
 	ExpirationDate DATE NOT NULL,
-  SurvivorId INTEGER(11) NOT NULL,
-  PRIMARY KEY (ItemId)
+    SurvivorId INTEGER(11) NOT NULL,
+    PRIMARY KEY (ItemId)
 );
