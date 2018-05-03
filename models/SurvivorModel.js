@@ -20,6 +20,7 @@ module.exports = function (sequelize, DataTypes) {
     // Associating Survivor with Posts
     // When an Author is deleted, also delete any associated Posts
     Survivor.hasMany(models.Item, {
+      foreignKey: 'SurvivorId',
       onDelete: 'cascade'
     })
   }

@@ -6,9 +6,24 @@ module.exports = function (sequelize, DataTypes) {
       primaryKey: true
     },
     ItemName: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      len: [1]
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Category: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Units: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    ExpirationDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    SurvivorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   })
 
@@ -16,9 +31,7 @@ module.exports = function (sequelize, DataTypes) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
     Item.belongsTo(models.Survivor, {
-      foreignKey: {
-        allowNull: false
-      }
+      foreignKey: 'SurvivorId'
     })
   }
 
