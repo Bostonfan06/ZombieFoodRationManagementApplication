@@ -5,11 +5,7 @@
     "database": "Zombie_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
-<<<<<<< Updated upstream
     "port": 8889
-=======
-    "Port": 8889
->>>>>>> Stashed changes
   },
   "test": {
     "username": "root",
