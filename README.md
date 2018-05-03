@@ -25,6 +25,5 @@ A simple inventory management system using sequelize CRUD methods. Create, edit,
 * Christopher Tran - Scrum Master / Front-End Developer
 * Lance Lee - Git Master / Back End Developer
 * Nick T.- Back End Developer
-* Templine
 
 
