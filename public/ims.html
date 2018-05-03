@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Add Item</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container hidden">
+		<div class="row top-30">
+      <div class="col-md-2 col-sm-2">
+        <a class="btn btn-light" href="/inventory">Go to Inventory</a>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <a class="btn btn-light" href="/survivor">Manage Survivors</a>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+			<div class="col-md-6 offset-md-3">
+                <h1 class="">Add Item to Inventory</h1>
+                </div>
+                </div>
+    <br><br>
+		<div class="row">
+                <div class="col-md-6 animated fadeInLeft">
+                        <p>As you stock food, take into account your group's unique needs
+                                and tastes. Familiar foods are important. They lift morale and give
+                                a feeling of security in times of stress. Try to include foods that they
+                                will enjoy and that are also high in calories and nutrition. Foods
+                                that require no refrigeration, water, special preparation, or cooking
+                                are best</p>
+                                <p>Individuals with special diets and allergies will need particular
+                                        attention, as will babies, toddlers, and the elderly. Nursing mothers
+                                        may need liquid formula, in case they are unable to nurse. Canned
+                                        dietetic foods, juices, and soups may be helpful for ill or elderly
+                                        people.
+                                        Make sure you have a manual can opener and disposable utensils.
+                                        Don’t forget nonperishable foods for your pets</p>
+                        </div>
+			<div class="col-md-6 animated fadeInRight">
+                    <form id="cms">
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label class="animated infinite pulse" for="inputItemName">Item Name</label>
+                                <input type="text" class="form-control" id="ItemName" placeholder="Item Name">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label class="animated infinite pulse" for="Category">Category</label>
+                                <select id="Category" class="form-control">
+                                  <option selected>Choose...</option>
+                                  <option>Carbohydrates</option>
+                                  <option>Meat</option>
+                                  <option>Fish</option>
+                                  <option>Vegetable</option>
+                                  <option>Fruit</option>
+                                  <option>Dairy</option>
+                                  <option>Sugar</option>
+                                  <option>Liquid</option>
+                                  <option>Condiment</option>
+                                  <option>Drug</option>
+                                  <option>Other</option> 
+                                </select>
+                              </div>
+                              </div>
+                            <div class="form-row">       
+                              <div class="form-group col-md-4">
+                                <label class="animated infinite pulse" for="inputCity">Expiration Date</label>
+                                <input type="text" class="form-control" id="ExpirationDate" placeholder="01/01/2018">
+                              </div>
+                              <div class="form-group col-md-2">
+                                <label class="animated infinite pulse" for="inputUnits">Units</label>
+                                <input type="text" class="form-control" id="Units">
+                              </div>
+                              <div class="form-group col-md-6">
+                                    <label class="animated infinite pulse" for="Survivor">Select Survivor</label>
+                                    <select class="custom-select" id="Survivor">
+                                      <option selected>Choose...</option>
+                                      <option>...</option>
+                                    </select>
+                                  </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Submit Item</button>
+                          </form>
+			</div>
+		</div>
+	</div>
+	<!-- Custom Script -->
+	<script src="js/cms.js" type="text/javascript"></script>
+
+</body>
+
+</html>
