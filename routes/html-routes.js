@@ -27,7 +27,7 @@ module.exports = function (app) {
   })
 
   // authors route loads author-manager.html
-  app.get('/survivors', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/survivors.html'))
+  app.get('/survivor', function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/survivor-manager.html'))
   })
 }
