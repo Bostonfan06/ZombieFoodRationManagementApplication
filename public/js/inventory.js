@@ -1,6 +1,11 @@
 $(document).ready(function () {
   getPosts()
 
+  $(document).on('click', 'button.delete', function (r) {
+    console.log('this thing: ' + $(this)[0])
+    console.log('arrr: ' + r[0])
+  })
+
   function getPosts () {
     $.get('/api/items', function (data) {
       for (var i = 0; i < data.length; i++) {
@@ -9,15 +14,6 @@ $(document).ready(function () {
       }
     })
   }
-
-  // function initializeRows () {
-  //   blogContainer.empty()
-  //     var postsToAdd = []
-  //     for (var i = 0; i < posts.length; i++) {
-  //       postsToAdd.push(createNewRow(posts[i]))
-  //     }
-  //       blogContainer.append(postsToAdd)
-  //     }
 
   function createNewRow (item, index) {
     var row = '<tr>' +
@@ -28,11 +24,21 @@ $(document).ready(function () {
       '<td>' + item.ExpirationDate + '</td>' +
       '<td>Glenn</td>' +
       '<td>' +
-        '<button>delete</button>' +
-        '<button>edit</button>' +
+        '<button class="delete" data-value="' + item.ItemId + '">delete</button>' +
+        '<button class="edit" data-value="' + item.ItemId + '">edit</button>' +
       '</td>' +
     '</tr>'
 
     return row
+  }
+
+  function deletePost (id) {
+    $.ajax({
+      method: 'DELETE',
+      url: '/api/items/' + id
+    })
+      .then(function () {
+        getPosts(postCategorySelect.val())
+      })
   }
 })
