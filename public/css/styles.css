@@ -2,11 +2,11 @@ button.submit {
   float: right;
 }
 
-form#cms {
+form#ims {
   margin-top: 50px;
 }
 
-#cms textarea {
+#ims textarea {
   resize: none;
 }
 
@@ -16,19 +16,19 @@ button.edit {
   margin: 5px;
 }
 
-.author-container {
+.survivor-container {
   margin-top: 50px;
 }
 
-.author-list {
+.survivor-list {
   margin-top: 25px;
 }
 
-.blog-container {
+.inventory-container {
   margin-top: 30px;
 }
 
-.blog {
+.inventory {
   margin-top: 30px;
 }
 
@@ -36,7 +36,7 @@ button.edit {
   display: none;
 }
 
-#author-name {
+#survivor-name {
   width: 100%;
   height: 35px;
   margin-top: 5px;
