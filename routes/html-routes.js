@@ -13,11 +13,11 @@ module.exports = function (app) {
 
   // index route loads view.html
   app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '../public/blog.html'))
+    res.sendFile(path.join(__dirname, '../public/index.html'))
   })
 
   // InventoryManagementSystem route loads cms.html
-  app.get('/cms', function (req, res) {
+  app.get('/ims', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/ims.html'))
   })
 
@@ -27,7 +27,7 @@ module.exports = function (app) {
   })
 
   // authors route loads author-manager.html
-  app.get('/survivor', function (req, res) {
+  app.get('/survivor-manager', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/survivor-manager.html'))
   })
 }
