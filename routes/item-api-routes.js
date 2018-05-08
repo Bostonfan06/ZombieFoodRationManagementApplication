@@ -23,6 +23,29 @@ module.exports = function (app) {
     })
   })
 
+ // Get all and sort by category by Chris Tran 5/5/2018
+ app.get("/api/items", function(req, res) {
+  Item.findAll({
+    order: {
+      Category: req.params.item
+    }
+  }).then(function(results) {
+    res.json(results);
+  });
+});
+
+ // Get a specific category
+ app.get("/api/items", function(req, res) {
+  Item.findAll({
+    where: {
+      titleCategory: req.params.item
+    }
+  }).then(function(results) {
+    res.json(results);
+  });
+});
+
+
   // Get route for retrieving a single post
   app.get('/api/item/:id', function (req, res) {
     // Here we add an "include" property to our options in our findOne query
