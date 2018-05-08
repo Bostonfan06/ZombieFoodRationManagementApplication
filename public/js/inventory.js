@@ -1,12 +1,11 @@
 $(document).ready(function () {
-  getPosts()
+  getItems()
 
   $(document).on('click', 'button.delete', function (r) {
-    console.log('this thing: ' + $(this)[0])
-    console.log('arrr: ' + r[0])
+    deleteItem($(this).attr('data-value'))
   })
 
-  function getPosts () {
+  function getItems () {
     $.get('/api/items', function (data) {
       for (var i = 0; i < data.length; i++) {
         var row = createNewRow(data[i], i)
@@ -22,7 +21,7 @@ $(document).ready(function () {
       '<td>' + item.Category + '</td>' +
       '<td>' + item.Units + '</td>' +
       '<td>' + item.ExpirationDate + '</td>' +
-      '<td>Glenn</td>' +
+      '<td>' + 'glenn' + '</td>' +
       '<td>' +
         '<button class="delete" data-value="' + item.ItemId + '">delete</button>' +
         '<button class="edit" data-value="' + item.ItemId + '">edit</button>' +
@@ -32,13 +31,14 @@ $(document).ready(function () {
     return row
   }
 
-  function deletePost (id) {
+  function deleteItem (id) {
     $.ajax({
       method: 'DELETE',
       url: '/api/items/' + id
     })
       .then(function () {
-        getPosts(postCategorySelect.val())
+        $('#itemBody').empty()
+        getItems()
       })
   }
 })

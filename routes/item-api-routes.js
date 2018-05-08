@@ -24,7 +24,7 @@ module.exports = function (app) {
   })
 
   // Get route for retrieving a single post
-  app.get('/api/item/:id', function (req, res) {
+  app.get('/api/items/:id', function (req, res) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
@@ -39,17 +39,17 @@ module.exports = function (app) {
   })
 
   // POST route for saving a new post
-  app.post('/api/item', function (req, res) {
+  app.post('/api/items', function (req, res) {
     db.Item.create(req.body).then(function (dbItem) {
       res.json(dbItem)
     })
   })
 
   // DELETE route for deleting posts
-  app.delete('/api/item/:id', function (req, res) {
+  app.delete('/api/items/:id', function (req, res) {
     db.Item.destroy({
       where: {
-        id: req.params.id
+        ItemId: req.params.id
       }
     }).then(function (dbItem) {
       res.json(dbItem)
@@ -57,7 +57,7 @@ module.exports = function (app) {
   })
 
   // PUT route for updating posts
-  app.put('/api/item', function (req, res) {
+  app.put('/api/items', function (req, res) {
     db.Item.update(
       req.body,
       {
