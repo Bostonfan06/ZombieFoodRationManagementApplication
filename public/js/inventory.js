@@ -6,7 +6,7 @@ $(document).ready(function () {
   })
 
   function getItems () {
-    $.get('/api/items', function (data) {
+    $.get('/items', function (data) {
       for (var i = 0; i < data.length; i++) {
         var row = createNewRow(data[i], i)
         $('#itemBody').append(row)
@@ -34,7 +34,7 @@ $(document).ready(function () {
   function deleteItem (id) {
     $.ajax({
       method: 'DELETE',
-      url: '/api/items/' + id
+      url: '/items/' + id
     })
       .then(function () {
         $('#itemBody').empty()
