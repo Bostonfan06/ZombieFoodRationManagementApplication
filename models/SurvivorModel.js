@@ -4,6 +4,7 @@ module.exports = function (sequelize, DataTypes) {
     SurvivorId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true
     },
     FirstName: {

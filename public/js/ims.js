@@ -13,6 +13,17 @@ $(document).ready(function () {
   // var survivorId
   // // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false
+  var newOption
+  appendSurvivorOptions()
+  function appendSurvivorOptions () {
+    $.get('/survivors', function (data) {
+      for (var i = 0; i < data.length; i++) {
+        $('#Survivor').append('<option>' + data[i].SurvivorId + '</option>')
+
+        console.log('iteration ' + i + ' data: ' + data[i].SurvivorId)
+      }
+    })
+  }
 
   // // If we have this section in our url, we pull out the post id from the url
   // // In '?post_id=1', postId is 1
@@ -37,6 +48,7 @@ $(document).ready(function () {
     }
     console.log('am I even in here?')
     // Constructing a newPost object to hand to the database
+
     var newItem = {
       ItemName: itemNameInput
         .val()
@@ -50,106 +62,110 @@ $(document).ready(function () {
       ExpirationDate: expirationDateInput
         .val()
         .trim(),
-      Survivor: convertToSurvivorId(survivorInput)
+      SurvivorId: convertToSurvivorId(survivorInput.val())
     }
 
     // If we're updating a post run updatePost to update a post
     // Otherwise run submitPost to create a whole new post
-    if (updating) {
-      newItem.id = itemId
-      updateItem(newItem)
-    } else {
-      console.log('submitting item')
-      submitItem(newItem)
-      console.log('submitted item')
-    }
-  }
+    //   if (updating) {
+    //     newItem.id = itemId
+    //     updateItem(newItem)
+    //   } else {
+    //     console.log('submitting item')
+    //     submitItem(newItem)
+    //     console.log('submitted item')
+    //   }]
+    // }
 
-  // Submits a new post and brings user to blog page upon completion
-  function submitItem (item) {
-    $.post('/items', item, function () {
-      window.location.href = '/inventory'
-    })
-  }
-
-  function convertToSurvivorId (survivorName) {
-    var survivorId
-    $.get('/survivors', function (data) {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].FirstName === survivorName) {
-          survivorId = data[i].SurvivorId
-        }
-      }
-      return survivorId
-    })
-  }
-
-  // Gets post data for the current post if we're editing, or if we're adding to an survivor's existing posts
-  function getItemData (id, type) {
-    var queryUrl
-    switch (type) {
-      case 'item':
-        queryUrl = '/api/items/' + id
-        break
-      case 'surivor':
-        queryUrl = '/api/survivors/' + id
-        break
-      default:
-        return
-    }
-    $.get(queryUrl, function (data) {
-      if (data) {
-        console.log(data.survivorId || data.id)
-        // If this post exists, prefill our cms forms with its data
-        titleInput.val(data.title)
-        bodyInput.val(data.body)
-        SurvivorId = data.SurvivorId || data.id
-        // If we have a post with this id, set a flag for us to know to update the post
-        // when we hit submit
-        updating = true
-      }
-    })
-  }
-
-  // A function to get survivors and then render our list of survivors
-  function getSurvivors () {
-    $.get('/api/survivors', rendersurvivorList)
-  }
-  // Function to either render a list of survivors, or if there are none, direct the user to the page
-  // to create an survivor first
-  function renderSurvivorsList (data) {
-    if (!data.length) {
-      window.location.href = '/survivors'
-    }
-    $('.hidden').removeClass('hidden')
-    var rowsToAdd = []
-    for (var i = 0; i < data.length; i++) {
-      rowsToAdd.push(createSurvivorRow(data[i]))
-    }
-    survivorSelect.empty()
-    console.log(rowsToAdd)
-    console.log(survivorSelect)
-    survivorSelect.append(rowsToAdd)
-    survivorSelect.val(survivorId)
-  }
-
-  // Creates the survivor options in the dropdown
-  function createsurvivorRow (survivor) {
-    var listOption = $('<option>')
-    listOption.attr('value', survivor.id)
-    listOption.text(survivor.name)
-    return listOption
-  }
-
-  // Update a given post, bring user to the blog page when done
-  function updateItem (item) {
-    $.ajax({
-      method: 'PUT',
-      url: '/api/items',
-      data: post
-    })
-      .then(function () {
+    // Submits a new post and brings user to blog page upon completion
+    function submitItem (item) {
+      $.post('/items', item, function () {
         window.location.href = '/inventory'
       })
+    }
+    // convertToSurvivorId('Rick')
+
+    // function convertToSurvivorId (survivorName) {
+    //   var survivorId
+    //   console.log('here')
+    //   $.get('/survivors', function (data) {
+    //     for (var i = 0; i < data.length; i++) {
+    //       console.log('iteration ' + i + ' data: ' + data[i])
+    //       if (data[i].FirstName === survivorName) {
+    //         survivorId = data[i].SurvivorId
+    //       }
+    //     }
+    //     return survivorId
+    //   })
+    // }
+
+    // Gets post data for the current post if we're editing, or if we're adding to an survivor's existing posts
+    function getItemData (id, type) {
+      var queryUrl
+      switch (type) {
+        case 'item':
+          queryUrl = '/api/items/' + id
+          break
+        case 'surivor':
+          queryUrl = '/api/survivors/' + id
+          break
+        default:
+          return
+      }
+      $.get(queryUrl, function (data) {
+        if (data) {
+          console.log(data.survivorId || data.id)
+          // If this post exists, prefill our cms forms with its data
+          titleInput.val(data.title)
+          bodyInput.val(data.body)
+          SurvivorId = data.SurvivorId || data.id
+          // If we have a post with this id, set a flag for us to know to update the post
+          // when we hit submit
+          updating = true
+        }
+      })
+    }
+
+    // A function to get survivors and then render our list of survivors
+    function getSurvivors () {
+      $.get('/api/survivors', rendersurvivorList)
+    }
+    // Function to either render a list of survivors, or if there are none, direct the user to the page
+    // to create an survivor first
+    function renderSurvivorsList (data) {
+      if (!data.length) {
+        window.location.href = '/survivors'
+      }
+      $('.hidden').removeClass('hidden')
+      var rowsToAdd = []
+      for (var i = 0; i < data.length; i++) {
+        rowsToAdd.push(createSurvivorRow(data[i]))
+      }
+      survivorSelect.empty()
+      console.log(rowsToAdd)
+      console.log(survivorSelect)
+      survivorSelect.append(rowsToAdd)
+      survivorSelect.val(survivorId)
+    }
+
+    // Creates the survivor options in the dropdown
+    function createsurvivorRow (survivor) {
+      var listOption = $('<option>')
+      listOption.attr('value', survivor.id)
+      listOption.text(survivor.name)
+      return listOption
+    }
+
+    // Update a given post, bring user to the blog page when done
+    function updateItem (item) {
+      $.ajax({
+        method: 'PUT',
+        url: '/api/items',
+        data: post
+      })
+        .then(function () {
+          window.location.href = '/inventory'
+        })
+    }
   }
 })

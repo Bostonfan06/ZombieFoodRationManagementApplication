@@ -3,6 +3,7 @@ module.exports = function (sequelize, DataTypes) {
     ItemId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true
     },
     ItemName: {

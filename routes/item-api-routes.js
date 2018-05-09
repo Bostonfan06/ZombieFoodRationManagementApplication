@@ -12,7 +12,7 @@ var db = require('../models')
 // =============================================================
 module.exports = function (app) {
   // GET route for getting all of the posts
-  app.get('/api/items', function (req, res) {
+  app.get('/items', function (req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
@@ -22,29 +22,6 @@ module.exports = function (app) {
       res.json(dbItem)
     })
   })
-
- // Get all and sort by category by Chris Tran 5/5/2018
- app.get("/api/items", function(req, res) {
-  Item.findAll({
-    order: {
-      Category: req.params.item
-    }
-  }).then(function(results) {
-    res.json(results);
-  });
-});
-
- // Get a specific category
- app.get("/api/items", function(req, res) {
-  Item.findAll({
-    where: {
-      titleCategory: req.params.item
-    }
-  }).then(function(results) {
-    res.json(results);
-  });
-});
-
 
   // Get route for retrieving a single post
   app.get('/items/:id', function (req, res) {
