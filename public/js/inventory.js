@@ -21,10 +21,10 @@ $(document).ready(function () {
       '<td>' + item.Category + '</td>' +
       '<td>' + item.Units + '</td>' +
       '<td>' + item.ExpirationDate + '</td>' +
-      '<td>' + 'glenn' + '</td>' +
+      '<td>' + item.Survivor.FirstName + '</td>' +
       '<td>' +
-        '<button class="delete" data-value="' + item.ItemId + '">delete</button>' +
-        '<button class="edit" data-value="' + item.ItemId + '">edit</button>' +
+        '<button class="delete item-options" data-value="' + item.ItemId + '">delete</button>' +
+        '<button class="edit item-options" data-value="' + item.ItemId + '">edit</button>' +
       '</td>' +
     '</tr>'
 
