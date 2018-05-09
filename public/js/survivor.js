@@ -1,28 +1,38 @@
 $(document).ready(function () {
-  // Grabbing references to the "survivor-name" input and survivor container, and the table "tbody"
-
-  var nameInput = $('survivor-name')
-    var survivorList = $('tbody')
-    var survivorContainer = $('.survivor-container')
+  // Getting references to the name input and survivor container, as well as the table body 
+  var FirstNameInput = $(#"survivor-FirstName";) //new
+  var LastNameInput = $(#"survivor-LastName";) //new
+  var survivorList = $("tbody");
+  var survivorContainer = $(".survivor-container");//new
     
-    //Adding listeners to form to create an object and button to delete object
-    $(document).on('submit', '#survivor-form', handleDeleteButtonPress)
+ // Adding event listeners to the form to create a new object, and the button to delete 
+  // an Survivor
+  $(document).on("submit", "#Survivor-form", handleSurvivorFormSubmit);
+  $(document).on("click", ".delete-survivor", handleSurvivorButtonPress);
 
-    //Grabbing list of Survivors
-    getSurvivors()
+  // Getting the initial list of Authors 
+  getSurvivors(); 
 
-    //Function that handles what happens when the form is submitted to create a new survivor
-    function handleSurvivorFormSubmit (event) {
-    event.preventDefault()
-    // Don't do anything if the name fields hasn't been filled out
-    if (!nameInput.val().trim().trim()) {
-      return
+   // A function to handle what happens when the form is submitted to create a new Author 
+   function handleSurvivorFormSubmit(event) {
+    event.preventDefault();
+    // Don't do anything if the name fields hasn't been filled out 
+    if (!FirstnameInput.val().trim() || !LastnameInput.val().trim() {
+      return;
     }
-    // Calling upsertSurvivor function and passing in the value of the name input
+    // Calling the upsertAuthor function and passing in the value of the name input 
     upsertSurvivor({
-      name: nameInput.val().trim()
-    })
-    }
+      Firstname: FirstnameInput
+        .val()
+        .trim(),
+      LastName: LastNameInput
+      .val()
+      .trim()
+    });
+  }
+
+
+
   // Function for creating a new list of row for Survivor
   function upsertSurvivor (survivorData) {
     $.post('/api/survivor', survivorData).then(getSurvivors)
