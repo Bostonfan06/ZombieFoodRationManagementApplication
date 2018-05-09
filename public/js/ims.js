@@ -18,9 +18,7 @@ $(document).ready(function () {
   function appendSurvivorOptions () {
     $.get('/survivors', function (data) {
       for (var i = 0; i < data.length; i++) {
-        $('#Survivor').append('<option>' + data[i].SurvivorId + '</option>')
-
-        console.log('iteration ' + i + ' data: ' + data[i].SurvivorId)
+        $('#Survivor').append('<option>' + data[i].FirstName + '</option>').attr('data-value', data[i].SurvivorId)
       }
     })
   }
