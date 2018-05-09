@@ -1,7 +1,7 @@
 var db = require('../models')
 
 module.exports = function (app) {
-  app.get('/survivors', function (req, res) {
+  app.get('api/survivor', function (req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
@@ -12,7 +12,7 @@ module.exports = function (app) {
     })
   })
 
-  app.get('/survivor/:id', function (req, res) {
+  app.get('api/survivor/:id', function (req, res) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
@@ -26,14 +26,17 @@ module.exports = function (app) {
     })
   })
 
-  app.post("/api/survivor", function(req, res) {
-    db.Survivors.create(req.body).then(function(dbSurvivor) {
-      res.json(dbSurvivor);
-    });
-  });
+  app.post('/api/survivor', function (req, res) {
+    db.Survivor.create({
+      FirstName: req.body.firstName, // mySQL:jQuery
+      LastName: req.body.lastName
+    })
+      .then(function (dbSurvivor) {
+        res.json(dbSurvivor)
+      })
+  })
 
-
-  app.delete('/survivor/:id', function (req, res) {
+  app.delete('/api/survivor/:id', function (req, res) {
     db.Survivor.destroy({
       where: {
         id: req.params.id
