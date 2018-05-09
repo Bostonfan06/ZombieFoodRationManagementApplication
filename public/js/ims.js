@@ -16,9 +16,9 @@ $(document).ready(function () {
   var newOption
   appendSurvivorOptions()
   function appendSurvivorOptions () {
-    $.get('/survivors', function (data) {
+    $.get('/api/survivor', function (data) {
       for (var i = 0; i < data.length; i++) {
-        $('#Survivor').append('<option data-value=" + + ">' + data[i].FirstName + '</option>').attr('data-value', data[i].SurvivorId)
+        $('#Survivor').append('<option data-value="' + data[i].SurvivorId + '">' + data[i].FirstName + '</option>')
       }
     })
   }
@@ -60,7 +60,7 @@ $(document).ready(function () {
       ExpirationDate: expirationDateInput
         .val()
         .trim(),
-      SurvivorId: 
+      SurvivorId: 'replaceme'
     }
 
     // If we're updating a post run updatePost to update a post
@@ -105,7 +105,7 @@ $(document).ready(function () {
           queryUrl = '/api/items/' + id
           break
         case 'surivor':
-          queryUrl = '/api/survivors/' + id
+          queryUrl = '/api/survivor/' + id
           break
         default:
           return
@@ -126,7 +126,7 @@ $(document).ready(function () {
 
     // A function to get survivors and then render our list of survivors
     function getSurvivors () {
-      $.get('/api/survivors', rendersurvivorList)
+      $.get('/api/survivor', rendersurvivorList)
     }
     // Function to either render a list of survivors, or if there are none, direct the user to the page
     // to create an survivor first
