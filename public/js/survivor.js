@@ -1,28 +1,50 @@
 $(document).ready(function () {
   // Grabbing references to the "survivor-name" input and survivor container, and the table "tbody"
 
-  var nameInput = $('survivor-name')
   var survivorList = $('tbody')
   var survivorContainer = $('.survivor-container')
-
+  var lastName = $('#Lastname')
+  var firstName = $('#Firstname')
   // Adding listeners to form to create an object and button to delete object
-  $(document).on('submit', '#survivor-form', handleDeleteButtonPress)
 
-  // Grabbing list of Survivors
-  getSurvivors()
-
-  // Function that handles what happens when the form is submitted to create a new survivor
-  function handleSurvivorFormSubmit (event) {
+  $('#createSurvivor').on('click', function handleFormSubmit (event) {
     event.preventDefault()
-    // Don't do anything if the name fields hasn't been filled out
-    if (!nameInput.val().trim().trim()) {
+
+    if (!firstName.val().trim() || !lastName.val().trim()) {
       return
     }
-    // Calling upsertSurvivor function and passing in the value of the name input
-    upsertSurvivor({
-      name: nameInput.val().trim()
+    var newSurvivor = {
+      firstName: firstName.val().trim(),
+      lastName: lastName.val().trim()
+    }
+    console.log(newSurvivor)
+    /// ///////////
+    // you have to pass the newSurvivor or else
+    submitPost(newSurvivor)
+  })
+
+  function submitPost (Survivor) {
+    /// ////////////
+    // or else over here Survivor has no value
+    $.post('/api/survivor', Survivor, function () {
+      console.log('posted')
     })
   }
+  // //Grabbing list of Survivors
+  // getSurvivors()
+
+  // //Function that handles what happens when the form is submitted to create a new survivor
+  // function handleSurvivorFormSubmit (event) {
+  // event.preventDefault()
+  // // Don't do anything if the name fields hasn't been filled out
+  // if (!nameInput.val().trim().trim()) {
+  //   return
+  // }
+  // // Calling upsertSurvivor function and passing in the value of the name input
+  // upsertSurvivor({
+  //   name: nameInput.val().trim()
+  // })
+  // }
   // Function for creating a new list of row for Survivor
   function upsertSurvivor (survivorData) {
     $.post('/api/survivor', survivorData).then(getSurvivors)

@@ -18,7 +18,7 @@ $(document).ready(function () {
   function appendSurvivorOptions () {
     $.get('/survivors', function (data) {
       for (var i = 0; i < data.length; i++) {
-        $('#Survivor').append('<option>' + data[i].FirstName + '</option>').attr('data-value', data[i].SurvivorId)
+        $('#Survivor').append('<option data-value=" + + ">' + data[i].FirstName + '</option>').attr('data-value', data[i].SurvivorId)
       }
     })
   }
@@ -60,7 +60,7 @@ $(document).ready(function () {
       ExpirationDate: expirationDateInput
         .val()
         .trim(),
-      SurvivorId: convertToSurvivorId(survivorInput.val())
+      SurvivorId: 
     }
 
     // If we're updating a post run updatePost to update a post
