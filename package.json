@@ -1,7 +1,7 @@
 {
   "name": "post-author-joins",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple inventory management system using sequelize CRUD methods. Create, edit, delete products. The inventory will have the following criterias: Product Name, Categories, Units, Expiration Date, Create Date, Created by, etc.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,8 +13,17 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "mysql2": "^1.3.6",
-    "sequelize": "^4.3.1"
-  }
+    "express": "^4.16.3",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.7"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PsychoChris89/ZombieFoodRationManagementApplication.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PsychoChris89/ZombieFoodRationManagementApplication/issues"
+  },
+  "homepage": "https://github.com/PsychoChris89/ZombieFoodRationManagementApplication#readme"
 }
