@@ -1,23 +1,18 @@
 $(document).ready(function () {
-  getPosts()
+  getItems()
 
-  function getPosts () {
-    $.get('/api/items', function (data) {
+  $(document).on('click', 'button.delete', function (r) {
+    deleteItem($(this).attr('data-value'))
+  })
+
+  function getItems () {
+    $.get('/items', function (data) {
       for (var i = 0; i < data.length; i++) {
         var row = createNewRow(data[i], i)
         $('#itemBody').append(row)
       }
     })
   }
-
-  // function initializeRows () {
-  //   blogContainer.empty()
-  //     var postsToAdd = []
-  //     for (var i = 0; i < posts.length; i++) {
-  //       postsToAdd.push(createNewRow(posts[i]))
-  //     }
-  //       blogContainer.append(postsToAdd)
-  //     }
 
   function createNewRow (item, index) {
     var row = '<tr>' +
@@ -26,13 +21,24 @@ $(document).ready(function () {
       '<td>' + item.Category + '</td>' +
       '<td>' + item.Units + '</td>' +
       '<td>' + item.ExpirationDate + '</td>' +
-      '<td>Glenn</td>' +
+      '<td>' + item.Survivor.FirstName + '</td>' +
       '<td>' +
-        '<button>delete</button>' +
-        '<button>edit</button>' +
+        '<button class="delete item-options" data-value="' + item.ItemId + '">delete</button>' +
+        '<button class="edit item-options" data-value="' + item.ItemId + '">edit</button>' +
       '</td>' +
     '</tr>'
 
     return row
+  }
+
+  function deleteItem (id) {
+    $.ajax({
+      method: 'DELETE',
+      url: '/items/' + id
+    })
+      .then(function () {
+        $('#itemBody').empty()
+        getItems()
+      })
   }
 })
