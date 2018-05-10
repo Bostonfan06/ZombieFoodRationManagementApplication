@@ -13,7 +13,7 @@ $(document).ready(function () {
   // var survivorId
   // // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false
-  var newOption
+
   appendSurvivorOptions()
   function appendSurvivorOptions () {
     $.get('/api/survivor', function (data) {
@@ -44,7 +44,7 @@ $(document).ready(function () {
     if (!itemNameInput.val().trim() || !categoryInput.val().trim() || !expirationDateInput.val().trim() || !unitsInput.val() || !survivorInput.val().trim()) {
       return
     }
-
+    console.log(expirationDateInput.val())
     // Constructing a newPost object to hand to the database
     var selectedSurvivorName = $('#Survivor').val()
     var selectedSurvivorId = $('#opt-' + selectedSurvivorName).attr('data-value')

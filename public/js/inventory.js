@@ -24,7 +24,8 @@ $(document).ready(function () {
       '<td>' + item.Survivor.FirstName + '</td>' +
       '<td>' +
         '<button class="delete item-options animated infinite pulse" data-value="' + item.ItemId + '">delete</button>' +
-        '<button class="edit item-options animated infinite pulse" data-value="' + item.ItemId + '">edit</button>' +
+      // one day... one day..
+      // '<button class="edit item-options animated infinite pulse" data-value="' + item.ItemId + '">edit</button>' +
       '</td>' +
     '</tr>'
 

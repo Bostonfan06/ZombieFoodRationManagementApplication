@@ -52,12 +52,12 @@
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label class="animated infinite pulse" for="inputItemName">Item Name</label>
-                                <input type="text" class="form-control" id="ItemName" placeholder="Item Name">
+                                <input type="text" class="form-control" id="ItemName" placeholder="Item Name" required>
                               </div>
                               <div class="form-group col-md-6">
                                 <label class="animated infinite pulse" for="Category">Category</label>
-                                <select id="Category" class="form-control">
-                                  <option selected>Choose...</option>
+                                <select id="Category" class="form-control" required>
+                                  <option disabled="disabled" selected="selected">Choose...</option>
                                   <option>Carbohydrates</option>
                                   <option>Meat</option>
                                   <option>Fish</option>
@@ -75,16 +75,16 @@
                             <div class="form-row">       
                               <div class="form-group col-md-4">
                                 <label class="animated infinite pulse" for="inputCity">Expiration Date</label>
-                                <input type="text" class="form-control" id="ExpirationDate" placeholder="01/01/2018">
+                                <input type="date" class="form-control" id="ExpirationDate" placeholder="01/01/2018" required>
                               </div>
                               <div class="form-group col-md-2">
                                 <label class="animated infinite pulse" for="inputUnits">Units</label>
-                                <input type="text" class="form-control" id="Units">
+                                <input type="number" class="form-control" id="Units" min="1" required>
                               </div>
                               <div class="form-group col-md-6">
                                     <label class="animated infinite pulse" for="Survivor">Select Survivor</label>
-                                    <select class="custom-select" id="Survivor">
-                                      <option selected>Choose...</option>
+                                    <select class="custom-select" id="Survivor" required>
+                                      <option disabled="disabled" selected="selected">Choose...</option>
                                     </select>
                                   </div>
                             </div>
@@ -94,7 +94,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- Custom Script -->
+  <!-- Custom Script -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script> 
 	<script src="js/ims.js" type="text/javascript"></script>
 
 </body>
