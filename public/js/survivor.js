@@ -9,12 +9,18 @@ $(document).ready(function () {
   var audio = new Audio('../assets/audio/zomAudio2.wav')
   audio.play()
 
+  
+ 
+
   // button clicks
   $(document).on('click', 'button.delete', function (r) {
     deleteSurvivor($(this).attr('data-value'))
   })
 
   $('#createSurvivor').on('click', function handleFormSubmit (event) {
+    
+    
+
     event.preventDefault()
 
     if (!firstName.val().trim() || !lastName.val().trim()) {
@@ -61,6 +67,7 @@ $(document).ready(function () {
 
   function upsertSurvivor (survivorData) {
     $.post('/api/survivor', survivorData).then(getSurvivors)
+    $("#survivorTable").tablesorter( {sortList: [[0,0], [1,0]]} );    
   }
 
   function renderSurvivorList (rows) {
