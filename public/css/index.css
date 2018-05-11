@@ -1,0 +1,32 @@
+body {
+    background: url("../assets/image/destroyedcity.jpg") fixed no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+}
+
+#zombietitle {
+    width: 85%;
+    margin-left: 50%;
+    margin-bottom: -15%;
+}
+
+p {
+    text-align: center;
+    color: white;
+    width: 88%;
+    margin-left: 48%;
+}
+
+#viewbtn {
+    margin-bottom: 10px;
+    margin-left: 270%
+}
+
+#survivorbtn {
+    margin-bottom: 10px;
+    margin-left: 273%
+}
+
+
+Add CommentCollapse 
