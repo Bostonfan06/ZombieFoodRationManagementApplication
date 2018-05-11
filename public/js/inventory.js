@@ -1,6 +1,8 @@
 $(document).ready(function () {
   getItems()
 
+
+  
   $(document).on('click', 'button.delete', function (r) {
     deleteItem($(this).attr('data-value'))
   })

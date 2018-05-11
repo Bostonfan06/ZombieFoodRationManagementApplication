@@ -7,6 +7,9 @@ $(document).ready(function () {
   var audio = new Audio('../assets/audio/zomAudio2.wav')
   audio.play()
 
+  
+ 
+
   // button clicks
   $(document).on('click', 'button.delete', function (r) {
     var id = $(this).attr('data-value')
@@ -15,6 +18,9 @@ $(document).ready(function () {
   })
 
   $('#createSurvivor').on('click', function handleFormSubmit (event) {
+    
+    
+
     event.preventDefault()
 
     if (!firstName.val().trim() || !lastName.val().trim()) {
@@ -59,6 +65,30 @@ $(document).ready(function () {
     '</tr>'
 
     return survivorRow
+  }
+
+
+  function upsertSurvivor (survivorData) {
+    $.post('/api/survivor', survivorData).then(getSurvivors)
+    $("#survivorTable").tablesorter( {sortList: [[0,0], [1,0]]} );    
+  }
+
+  function renderSurvivorList (rows) {
+    survivorList.children().not(':last').remove()
+    survivorContainer.children('.alert').remove()
+    if (rows.length) {
+      console.log(rows)
+      survivorList.prepend(rows)
+    } else {
+      renderEmpty()
+    }
+  }
+
+  function renderEmpty () {
+    var alertDiv = $('<div>')
+    alertDiv.addClass('alert alert-danger')
+    alertDiv.text('You must create a Survivor before you can create a Post.')
+    survivorContainer.append(alertDiv)
   }
 
   function deleteSurvivor (id) {

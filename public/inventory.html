@@ -25,16 +25,16 @@
     </div>
     <div class="row">
       <div class="col-md-12 inventory-container">
-          <table class="table">
+          <table id='inventoryTable' class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Item</th>
-                  <th scope="col">Category</th>
-                  <th scope="col">Units</th>
-                  <th scope="col">Expiration Date</th>
-                  <th scope="col">Belongs To</th>
-                  <th scope="col">Options</th>
+                  <th scope="col" onclick="sortTableInt(0)">#</th>
+                  <th scope="col" onclick="sortTable(1)">Item</th>
+                  <th scope="col" onclick="sortTable(2)">Category</th>
+                  <th scope="col" onclick="sortTableInt(3)">Units</th>
+                  <th scope="col" onclick="sortTableInt(4)">Expiration Date</th>
+                  <th scope="col" onclick="sortTable(5)">Belongs To</th>
+                  <th scope="col" onclick="sortTable(6)">Options</th>
                 </tr>
               </thead>
               <tbody id="itemBody">
@@ -45,6 +45,103 @@
   </div>
 
   <script src="js/inventory.js" type="text/javascript"></script>
+  <script>
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("inventoryTable");
+        switching = true;
+      
+        dir = "asc"; 
+      
+        while (switching) {
+      
+          switching = false;
+          rows = table.getElementsByTagName("TR");
+      
+          for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+      
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+      
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          console.log("x = " + x.innerHTML + " y = " + y.innerHTML)
+          shouldSwitch= true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //console.log("xD = " + x.innerHTML + " yD = " + y.innerHTML)
+                shouldSwitch= true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+      
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+      
+            switchcount ++; 
+          } else {
+      
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+      }
+
+function sortTableInt(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("inventoryTable");
+    switching = true;
+  
+    dir = "asc"; 
+  
+    while (switching) {
+  
+      switching = false;
+      rows = table.getElementsByTagName("TR");
+  
+      for (i = 1; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+  
+        x = rows[i].getElementsByTagName("TD")[n];
+        y = rows[i + 1].getElementsByTagName("TD")[n];
+  
+        if (dir == "asc") {
+          if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+			console.log("x = " + x.innerHTML + " y = " + y.innerHTML)
+			shouldSwitch= true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+			//console.log("xD = " + x.innerHTML + " yD = " + y.innerHTML)
+            shouldSwitch= true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+  
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+  
+        switchcount ++; 
+      } else {
+  
+        if (switchcount == 0 && dir == "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
+  }      
+    </script>
 </body>
 
 </html>
