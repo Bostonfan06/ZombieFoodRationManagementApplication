@@ -9,6 +9,11 @@ $(document).ready(function () {
   var audio = new Audio('../assets/audio/zomAudio2.wav')
   audio.play()
 
+  // button clicks
+  $(document).on('click', 'button.delete', function (r) {
+    deleteSurvivor($(this).attr('data-value'))
+  })
+
   $('#createSurvivor').on('click', function handleFormSubmit (event) {
     event.preventDefault()
 
@@ -76,12 +81,14 @@ $(document).ready(function () {
     survivorContainer.append(alertDiv)
   }
 
-  function handleDeleteButtonPress () {
-    var listItemData = $(this).parent('td').parent('tr').data('survivor')
-    var id = listItemData.id
+  function deleteSurvivor (id) {
     $.ajax({
       method: 'DELETE',
       url: '/api/survivor/' + id
-    }).then(getSurvivors)
+    })
+      .then(function () {
+        $('#itemBody').empty()
+        getItems()
+      })
   }
 })

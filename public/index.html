@@ -5,52 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Zombie Food Ration Management</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+	<link rel="stylesheet" href="css/index.css" media="screen" title="no title">
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body> 
 <div class="container">
     <div class="row">
-        <div class='col-md-12'>
-   
+        <div class="col-md-4"></div>       
+        <div class="col-md-8 animated fadeInRight">
+            <img id="zombietitle" src="./assets/image/ZOMBIEFOOD.png">                            
+                    <p>It’s hard to prepare and stalk-up when you have no idea what you need to get or why! <br> These inventory management systems make you think about what you are really preparing for and help you actually log what you have and who entered it.</p>
         </div>
-        <br><br>
+    </div>
         <div class="row">
-                <div class='col-md-6'>
-                    <img class="fridge" src="https://vignette.wikia.nocookie.net/callofduty/images/b/bb/Fridge_model_BOII.png/revision/latest?cb=20150329200953" style="width:500px;">
-                
-                </div>
-                
-          
-                <div class='col-md-6 animated fadeInRight'>
-                        <h1>Zombie Food Rations Management</h1>
-                        <div class="glitch" data-text="GLITCH">GLITCH</div> 
-                    <p>It’s hard to prepare and stalk-up when you have no idea what you need to get or why! These inventory management systems make you think about what you are really preparing for and help you actually log what you have and who entered it.</p>
-                   
-                    <div class="col-md-2 col-sm-2">
-                            <a class="btn btn-light animated infinite pulse" href="/ims">View Inventory Items</a>
-                          </div>
-                       <br><br>
-                          <div class="col-md-2 col-sm-2">
-                                <a class="btn btn-light animated infinite pulse" href="/survivor-manager">Manage Survivors</a>
-                              </div>   
-                    
-                            </div>
-    
+            <div clas="col-md-8 col-sm-8"></div>         
+            <div class="col-md-4 col-sm-4">
+                <a id="viewbtn" class="btn btn-danger animated infinite pulse" href="/ims">View Inventory Items</a>
+                <br>
+                <a id="survivorbtn" class="btn btn-danger animated infinite pulse" href="/survivor-manager">Manage Survivors</a>
+            </div> 
+        </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class='col-md-12'>
-       
-            <audio controls autoplay style="margin-left:auto; margin-right:auto; display: block;">
-                <source src="http://www.televisiontunes.com/uploads/audio/The Walking Dead.mp3" type="audio/mpeg" >
-              </audio>
+        <div class="col-md-4 animated infinite shake">
+            <img src="./assets/image/fridge.png">
+        </div>
+        <div class="col-md-8">
+            <audio controls autoplay style="margin-left: 67%; margin-top: 30%; display: block;">
+                <source src="http://www.televisiontunes.com/uploads/audio/The Walking Dead.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
     
 
+<script type="text/javascript">
 
+
+</script>
 </body>
 </html>
