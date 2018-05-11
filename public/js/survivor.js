@@ -6,6 +6,8 @@ $(document).ready(function () {
   var lastName = $('#Lastname')
   var firstName = $('#Firstname')
   // Adding listeners to form to create an object and button to delete object
+  var audio = new Audio('../assets/audio/zomAudio2.wav');
+  audio.play();
 
   $('#createSurvivor').on('click', function handleFormSubmit (event) {
     event.preventDefault()
@@ -30,6 +32,30 @@ $(document).ready(function () {
       console.log('posted')
     })
   }
+
+  ///////////////////////////////////////
+  function getSurvivors () {
+    $.get('/api/survivor', function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var row = createNewRow2(data[i], i)
+        $('#survivorBody').append(row)
+      }
+    })
+  }
+  getSurvivors()
+
+  function createNewRow2 (survivor, index) {
+    var row = '<tr>' +
+      '<th scope="row">' + (index + 1) + '</th>' +
+      '<td>' + survivor.SurvivorID + '</td>' +
+      '<td>' + survivor.FirstName + '</td>' +
+      '<td>' + survivor.LastName + '</td>' +
+      '<td>' + survivor.SurvivorItems + '</td>' +
+    '</tr>'
+
+    return row
+  }
+  ////////////////////////////////////////
   // //Grabbing list of Survivors
   // getSurvivors()
 
@@ -62,18 +88,7 @@ $(document).ready(function () {
     return newTr
   }
 
-  function getSurvivors () {
-    $.get('/api/survivor', function (data) {
-      var rowsToAdd = []
-      for (var i = 0; i < data.length; i++) {
-        rowsToAdd.push(createSurvivorRow(data[i])
-        )
-      }
-      renderSurvivorList(rowToAdd)
-      nameInput.val('')
-    })
-  }
-
+ 
   function renderSurvivorList (rows) {
     survivorList.children().not(':last').remove()
     survivorContainer.children('.alert').remove()
