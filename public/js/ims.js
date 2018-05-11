@@ -5,6 +5,11 @@ $(document).ready(function () {
   var expirationDateInput = $('#ExpirationDate')
   var unitsInput = $('#Units')
   var survivorInput = $('#Survivor')
+/////////////AUDIO/////////////
+var audio = new Audio('../assets/audio/zomAudio1.wav');
+audio.play();
+////////////////////////////////
+
   // Adding an event listener for when the form is submitted
   $('#ims').on('submit', handleFormSubmit)
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
