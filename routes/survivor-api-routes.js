@@ -37,9 +37,10 @@ module.exports = function (app) {
   })
 
   app.delete('/api/survivor/:id', function (req, res) {
+    console.log(typeof req.params.id)
     db.Survivor.destroy({
       where: {
-        id: req.params.id
+        id: parseInt(req.params.id)
       }
     }).then(function (dbSurvivor) {
       res.json(dbSurvivor)

@@ -49,7 +49,7 @@ module.exports = function (app) {
   app.delete('/items/:id', function (req, res) {
     db.Item.destroy({
       where: {
-        ItemId: req.params.id
+        id: req.params.id
       }
     }).then(function (dbItem) {
       res.json(dbItem)
