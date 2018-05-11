@@ -1,12 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   var Survivor = sequelize.define('Survivor', {
     // Giving the Author model a name of type STRING
-    SurvivorId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true
-    },
     FirstName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -21,8 +15,7 @@ module.exports = function (sequelize, DataTypes) {
     // Associating Survivor with Posts
     // When an Author is deleted, also delete any associated Posts
     Survivor.hasMany(models.Item, {
-      foreignKey: 'SurvivorId',
-      onDelete: 'cascade'
+      onDelete: 'CASCADE'
     })
   }
 

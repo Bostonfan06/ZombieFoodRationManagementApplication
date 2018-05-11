@@ -1,8 +1,6 @@
 $(document).ready(function () {
   // Grabbing references to the "survivor-name" input and survivor container, and the table "tbody"
 
-  var survivorList = $('tbody')
-  var survivorContainer = $('.survivor-container')
   var lastName = $('#Lastname')
   var firstName = $('#Firstname')
   // Adding listeners to form to create an object and button to delete object
@@ -11,7 +9,9 @@ $(document).ready(function () {
 
   // button clicks
   $(document).on('click', 'button.delete', function (r) {
-    deleteSurvivor($(this).attr('data-value'))
+    var id = $(this).attr('data-value')
+    console.log(id)
+    deleteSurvivor(id)
   })
 
   $('#createSurvivor').on('click', function handleFormSubmit (event) {
@@ -52,33 +52,13 @@ $(document).ready(function () {
       '<th scope="row">' + (index + 1) + '</th>' +
       '<td>' + survivor.FirstName + '</td>' +
       '<td>' + survivor.LastName + '</td>' +
-      '<td>' + survivor.SurvivorItems + '</td>' +
-      '<td>' + survivor.SurvivorItems + '</td>' +
+      '<td>' + survivor.Items.length + '</td>' +
+      '<td>' +
+        '<button class="delete item-options animated infinite pulse" data-value="' + survivor.id + '">delete</button>' +
+      '</td>' +
     '</tr>'
 
     return survivorRow
-  }
-
-  function upsertSurvivor (survivorData) {
-    $.post('/api/survivor', survivorData).then(getSurvivors)
-  }
-
-  function renderSurvivorList (rows) {
-    survivorList.children().not(':last').remove()
-    survivorContainer.children('.alert').remove()
-    if (rows.length) {
-      console.log(rows)
-      survivorList.prepend(rows)
-    } else {
-      renderEmpty()
-    }
-  }
-
-  function renderEmpty () {
-    var alertDiv = $('<div>')
-    alertDiv.addClass('alert alert-danger')
-    alertDiv.text('You must create a Survivor before you can create a Post.')
-    survivorContainer.append(alertDiv)
   }
 
   function deleteSurvivor (id) {
@@ -87,8 +67,8 @@ $(document).ready(function () {
       url: '/api/survivor/' + id
     })
       .then(function () {
-        $('#itemBody').empty()
-        getItems()
+        $('#survivorBody').empty()
+        getSurvivors()
       })
   }
 })

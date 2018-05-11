@@ -5,10 +5,10 @@ $(document).ready(function () {
   var expirationDateInput = $('#ExpirationDate')
   var unitsInput = $('#Units')
   var survivorInput = $('#Survivor')
-/////////////AUDIO/////////////
-var audio = new Audio('../assets/audio/zomAudio1.wav');
-audio.play();
-////////////////////////////////
+  /// //////////AUDIO/////////////
+  var audio = new Audio('../assets/audio/zomAudio1.wav')
+  audio.play()
+  /// /////////////////////////////
 
   // Adding an event listener for when the form is submitted
   $('#ims').on('submit', handleFormSubmit)
@@ -23,7 +23,7 @@ audio.play();
   function appendSurvivorOptions () {
     $.get('/api/survivor', function (data) {
       for (var i = 0; i < data.length; i++) {
-        $('#Survivor').append('<option id="opt-' + data[i].FirstName + '" data-value="' + data[i].SurvivorId + '">' + data[i].FirstName + '</option>')
+        $('#Survivor').append('<option id="opt-' + data[i].FirstName + '" data-value="' + data[i].id + '">' + data[i].FirstName + '</option>')
       }
     })
   }
@@ -53,6 +53,7 @@ audio.play();
     // Constructing a newPost object to hand to the database
     var selectedSurvivorName = $('#Survivor').val()
     var selectedSurvivorId = $('#opt-' + selectedSurvivorName).attr('data-value')
+    console.log(selectedSurvivorId)
     var newItem = {
       ItemName: itemNameInput
         .val()
