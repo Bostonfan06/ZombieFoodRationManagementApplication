@@ -2,8 +2,6 @@
 
 A simple inventory management system using sequelize CRUD methods. Create, edit, delete products. The inventory will have the following criterias: Product Name, Categories, Units, Expiration Date, Create Date, Created by, etc.
 
-
-
 ## Built With
 
 * CSS 3
@@ -16,8 +14,6 @@ A simple inventory management system using sequelize CRUD methods. Create, edit,
 * Express.js
 * MySQL2
 * Sequelize
-
-
 
 ## Authors
 
