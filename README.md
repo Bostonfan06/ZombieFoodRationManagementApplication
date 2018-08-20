@@ -22,4 +22,6 @@ A simple inventory management system using sequelize CRUD methods. Create, edit,
 * Lance Lee - Git Master / Back End Developer
 * Nick T.- Back End Developer
 
+[Zombie App](https://zfrm.herokuapp.com/)
+
 
